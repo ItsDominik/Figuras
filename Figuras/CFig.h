@@ -3,8 +3,8 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
-#include<math.h>
-#define PI 3.14159265
+#include <math.h>
+#define PI 3.14159265358979323846264338327950288419716939937510
 using namespace System::Drawing;
 class CFig
 {
@@ -17,12 +17,13 @@ public:
 	void reflejoEnX();
 	void reflejoEnY();
 	void reflejoEnOrigen();
+	void reflejoXequalY();
 	void rotacion(int angulo);
 	~CFig();
 
 private:
 	int a, b, c, d;
-	std::vector<int> puntos;
+	std::vector<double> puntos;
 };
 
 CFig::CFig()
@@ -45,6 +46,7 @@ void CFig::dibujaMapa(Graphics^ g)
 {
 	g->DrawLine(Pens::Blue, a, 0, a, c);
 	g->DrawLine(Pens::Blue, 0, b, d, b);
+	g->DrawLine(Pens::Green, d, 0, 0, c);
 }
 
 void CFig::dibujaLineas(Graphics^ g)
@@ -75,12 +77,19 @@ void CFig::reflejoEnOrigen()
 	for (int i = 0; i < puntos.size(); i++)
 		puntos.at(i) *= -1;
 }
+void CFig::reflejoXequalY()
+{
+	for (int i = 0; i < puntos.size(); i += 2)
+	{
+		std::swap(puntos.at(i), puntos.at(i + 1));
+	}
+}
 void CFig::rotacion(int angulo)
 {
-	for (int i = 0; i < puntos.size()-2; i += 2)
+	for (int i = 0; i < puntos.size()-1; i += 2)
 	{
-		puntos.at(i) = puntos.at(i) * cos(angulo * PI / 180) - puntos.at(i + 1) * sin(angulo * PI / 180);
-		puntos.at(i + 1) = puntos.at(i) * sin(angulo * PI / 180) + puntos.at(i + 1) * cos(angulo * PI / 180);
+		puntos.at(i) = puntos.at(i) * cos(double(angulo * PI / 180)) - puntos.at(i + 1) * sin(double(angulo * PI / 180));
+		puntos.at(i + 1) = puntos.at(i) * sin(double(angulo * PI / 180)) + puntos.at(i + 1) * cos(double(angulo * PI / 180));
 	}
 }
 CFig::~CFig()

@@ -44,6 +44,7 @@ namespace Figuras {
 	private: System::Windows::Forms::Button^ btnROrigen;
 	private: System::Windows::Forms::TrackBar^ tBAngulo;
 	private: System::Windows::Forms::Label^ lblAngulo;
+	private: System::Windows::Forms::Button^ btnYequalX;
 
 		   BufferedGraphics^ bff;
 
@@ -59,6 +60,7 @@ namespace Figuras {
 			this->btnROrigen = (gcnew System::Windows::Forms::Button());
 			this->tBAngulo = (gcnew System::Windows::Forms::TrackBar());
 			this->lblAngulo = (gcnew System::Windows::Forms::Label());
+			this->btnYequalX = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->tBAngulo))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -97,7 +99,7 @@ namespace Figuras {
 			// 
 			// btnRY
 			// 
-			this->btnRY->Location = System::Drawing::Point(737, 120);
+			this->btnRY->Location = System::Drawing::Point(737, 93);
 			this->btnRY->Name = L"btnRY";
 			this->btnRY->Size = System::Drawing::Size(105, 33);
 			this->btnRY->TabIndex = 3;
@@ -107,7 +109,7 @@ namespace Figuras {
 			// 
 			// btnROrigen
 			// 
-			this->btnROrigen->Location = System::Drawing::Point(737, 198);
+			this->btnROrigen->Location = System::Drawing::Point(737, 149);
 			this->btnROrigen->Name = L"btnROrigen";
 			this->btnROrigen->Size = System::Drawing::Size(105, 33);
 			this->btnROrigen->TabIndex = 4;
@@ -134,11 +136,22 @@ namespace Figuras {
 			this->lblAngulo->TabIndex = 6;
 			this->lblAngulo->Text = L"0";
 			// 
+			// btnYequalX
+			// 
+			this->btnYequalX->Location = System::Drawing::Point(737, 207);
+			this->btnYequalX->Name = L"btnYequalX";
+			this->btnYequalX->Size = System::Drawing::Size(105, 33);
+			this->btnYequalX->TabIndex = 7;
+			this->btnYequalX->Text = L"Reflejo Y = X";
+			this->btnYequalX->UseVisualStyleBackColor = true;
+			this->btnYequalX->Click += gcnew System::EventHandler(this, &MyForm::btnYequalX_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(927, 487);
+			this->Controls->Add(this->btnYequalX);
 			this->Controls->Add(this->lblAngulo);
 			this->Controls->Add(this->tBAngulo);
 			this->Controls->Add(this->btnROrigen);
@@ -159,7 +172,7 @@ namespace Figuras {
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
-		bff->Graphics->Clear(Color::WhiteSmoke);
+		bff->Graphics->Clear(Color::Black);
 		objf->dibujaMapa(bff->Graphics);
 		objf->dibujarFigura(bff->Graphics);
 		bff->Render(g);
@@ -180,6 +193,9 @@ private: System::Void tBAngulo_Scroll(System::Object^ sender, System::EventArgs^
 }
 private: System::Void btnRotacion_Click(System::Object^ sender, System::EventArgs^ e) {
 	objf->rotacion(tBAngulo->Value);
+}
+private: System::Void btnYequalX_Click(System::Object^ sender, System::EventArgs^ e) {
+	objf->reflejoXequalY();
 }
 };
 }
