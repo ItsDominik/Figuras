@@ -46,6 +46,11 @@ namespace Figuras {
 	private: System::Windows::Forms::Label^ lblAngulo;
 	private: System::Windows::Forms::Button^ btnYequalX;
 
+	private: System::Windows::Forms::Button^ btnHomotecia;
+	private: System::Windows::Forms::TrackBar^ tBHomotecia;
+	private: System::Windows::Forms::Label^ lblHomotecia;
+
+
 		   BufferedGraphics^ bff;
 
 #pragma region Windows Form Designer generated code
@@ -61,7 +66,11 @@ namespace Figuras {
 			this->tBAngulo = (gcnew System::Windows::Forms::TrackBar());
 			this->lblAngulo = (gcnew System::Windows::Forms::Label());
 			this->btnYequalX = (gcnew System::Windows::Forms::Button());
+			this->btnHomotecia = (gcnew System::Windows::Forms::Button());
+			this->tBHomotecia = (gcnew System::Windows::Forms::TrackBar());
+			this->lblHomotecia = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->tBAngulo))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->tBHomotecia))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// panel1
@@ -79,7 +88,7 @@ namespace Figuras {
 			// 
 			// btnRX
 			// 
-			this->btnRX->Location = System::Drawing::Point(737, 30);
+			this->btnRX->Location = System::Drawing::Point(687, 27);
 			this->btnRX->Name = L"btnRX";
 			this->btnRX->Size = System::Drawing::Size(105, 36);
 			this->btnRX->TabIndex = 1;
@@ -89,7 +98,7 @@ namespace Figuras {
 			// 
 			// btnRotacion
 			// 
-			this->btnRotacion->Location = System::Drawing::Point(737, 302);
+			this->btnRotacion->Location = System::Drawing::Point(687, 140);
 			this->btnRotacion->Name = L"btnRotacion";
 			this->btnRotacion->Size = System::Drawing::Size(105, 37);
 			this->btnRotacion->TabIndex = 2;
@@ -99,7 +108,7 @@ namespace Figuras {
 			// 
 			// btnRY
 			// 
-			this->btnRY->Location = System::Drawing::Point(737, 93);
+			this->btnRY->Location = System::Drawing::Point(810, 30);
 			this->btnRY->Name = L"btnRY";
 			this->btnRY->Size = System::Drawing::Size(105, 33);
 			this->btnRY->TabIndex = 3;
@@ -109,7 +118,7 @@ namespace Figuras {
 			// 
 			// btnROrigen
 			// 
-			this->btnROrigen->Location = System::Drawing::Point(737, 149);
+			this->btnROrigen->Location = System::Drawing::Point(687, 84);
 			this->btnROrigen->Name = L"btnROrigen";
 			this->btnROrigen->Size = System::Drawing::Size(105, 33);
 			this->btnROrigen->TabIndex = 4;
@@ -119,7 +128,7 @@ namespace Figuras {
 			// 
 			// tBAngulo
 			// 
-			this->tBAngulo->Location = System::Drawing::Point(692, 372);
+			this->tBAngulo->Location = System::Drawing::Point(687, 205);
 			this->tBAngulo->Maximum = 360;
 			this->tBAngulo->Minimum = -360;
 			this->tBAngulo->Name = L"tBAngulo";
@@ -130,7 +139,7 @@ namespace Figuras {
 			// lblAngulo
 			// 
 			this->lblAngulo->AutoSize = true;
-			this->lblAngulo->Location = System::Drawing::Point(779, 345);
+			this->lblAngulo->Location = System::Drawing::Point(835, 152);
 			this->lblAngulo->Name = L"lblAngulo";
 			this->lblAngulo->Size = System::Drawing::Size(13, 13);
 			this->lblAngulo->TabIndex = 6;
@@ -138,7 +147,7 @@ namespace Figuras {
 			// 
 			// btnYequalX
 			// 
-			this->btnYequalX->Location = System::Drawing::Point(737, 207);
+			this->btnYequalX->Location = System::Drawing::Point(810, 84);
 			this->btnYequalX->Name = L"btnYequalX";
 			this->btnYequalX->Size = System::Drawing::Size(105, 33);
 			this->btnYequalX->TabIndex = 7;
@@ -146,11 +155,43 @@ namespace Figuras {
 			this->btnYequalX->UseVisualStyleBackColor = true;
 			this->btnYequalX->Click += gcnew System::EventHandler(this, &MyForm::btnYequalX_Click);
 			// 
+			// btnHomotecia
+			// 
+			this->btnHomotecia->Location = System::Drawing::Point(687, 265);
+			this->btnHomotecia->Name = L"btnHomotecia";
+			this->btnHomotecia->Size = System::Drawing::Size(105, 37);
+			this->btnHomotecia->TabIndex = 9;
+			this->btnHomotecia->Text = L"Homotecia";
+			this->btnHomotecia->UseVisualStyleBackColor = true;
+			this->btnHomotecia->Click += gcnew System::EventHandler(this, &MyForm::btnHomotecia_Click);
+			// 
+			// tBHomotecia
+			// 
+			this->tBHomotecia->Location = System::Drawing::Point(687, 320);
+			this->tBHomotecia->Maximum = 80;
+			this->tBHomotecia->Name = L"tBHomotecia";
+			this->tBHomotecia->Size = System::Drawing::Size(207, 45);
+			this->tBHomotecia->SmallChange = 5;
+			this->tBHomotecia->TabIndex = 10;
+			this->tBHomotecia->Scroll += gcnew System::EventHandler(this, &MyForm::tBHomotecia_Scroll);
+			// 
+			// lblHomotecia
+			// 
+			this->lblHomotecia->AutoSize = true;
+			this->lblHomotecia->Location = System::Drawing::Point(835, 277);
+			this->lblHomotecia->Name = L"lblHomotecia";
+			this->lblHomotecia->Size = System::Drawing::Size(13, 13);
+			this->lblHomotecia->TabIndex = 11;
+			this->lblHomotecia->Text = L"0";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(927, 487);
+			this->Controls->Add(this->lblHomotecia);
+			this->Controls->Add(this->tBHomotecia);
+			this->Controls->Add(this->btnHomotecia);
 			this->Controls->Add(this->btnYequalX);
 			this->Controls->Add(this->lblAngulo);
 			this->Controls->Add(this->tBAngulo);
@@ -164,6 +205,7 @@ namespace Figuras {
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->tBAngulo))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->tBHomotecia))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -196,6 +238,12 @@ private: System::Void btnRotacion_Click(System::Object^ sender, System::EventArg
 }
 private: System::Void btnYequalX_Click(System::Object^ sender, System::EventArgs^ e) {
 	objf->reflejoXequalY();
+}
+private: System::Void btnHomotecia_Click(System::Object^ sender, System::EventArgs^ e) {
+	objf->homotecia(double(tBHomotecia->Value/10));
+}
+private: System::Void tBHomotecia_Scroll(System::Object^ sender, System::EventArgs^ e) {
+	lblHomotecia->Text = tBHomotecia->Value.ToString();
 }
 };
 }

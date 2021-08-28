@@ -19,6 +19,7 @@ public:
 	void reflejoEnOrigen();
 	void reflejoXequalY();
 	void rotacion(int angulo);
+	void homotecia(double hom);
 	~CFig();
 
 private:
@@ -90,6 +91,13 @@ void CFig::rotacion(int angulo)
 	{
 		puntos.at(i) = puntos.at(i) * cos(double(angulo * PI / 180)) - puntos.at(i + 1) * sin(double(angulo * PI / 180));
 		puntos.at(i + 1) = puntos.at(i) * sin(double(angulo * PI / 180)) + puntos.at(i + 1) * cos(double(angulo * PI / 180));
+	}
+}
+void CFig::homotecia(double hom)
+{
+	for (size_t i = 0; i < puntos.size(); i++)
+	{
+		puntos.at(i) *= hom;
 	}
 }
 CFig::~CFig()
